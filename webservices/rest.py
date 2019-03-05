@@ -176,7 +176,7 @@ def add_caching_headers(response):
     cache_duration = get_cache_duration(request.path)
     response.headers.add(
         'Cache-Control',
-        'public, max-age={}'.format(cache_duration)
+        'max-age={}'.format(cache_duration)
     )
     return response
 
