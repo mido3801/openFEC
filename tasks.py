@@ -144,7 +144,7 @@ DEPLOY_RULES = (
     ('prod', _detect_prod),
     ('stage', lambda _, branch: branch.startswith('release')),
     # ('dev', lambda _, branch: branch == 'develop'),
-    ('dev', lambda _, branch: branch == 'feature/update-buildpack-cflinuxfs3'),
+    ('dev', lambda _, branch: branch == 'feature/test-buildpack-cflinuxfs3-with-psycopyg2-2.7.1'),
 )
 
 
