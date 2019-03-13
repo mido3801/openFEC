@@ -142,9 +142,9 @@ def _detect_space(repo, branch=None, yes=False):
 
 DEPLOY_RULES = (
     ('prod', _detect_prod),
-    ('stage', lambda _, branch: branch.startswith('release')),
+    #('stage', lambda _, branch: branch.startswith('release')),
     ('dev', lambda _, branch: branch == 'develop'),
-    # ('dev', lambda _, branch: branch == 'feature/create_bastion_host'),
+    ('stage', lambda _, branch: branch == 'feature/test-caching-headers'),
 )
 
 
@@ -182,6 +182,7 @@ def deploy(ctx, space=None, branch=None, login=None, yes=False, skip_migrations=
     # Target space
     ctx.run('cf target -o fec-beta-fec -s {0}'.format(space), echo=True)
 
+    skip_migrations = True
     if skip_migrations:
         print("\nSkipping migrations. Database not migrated.\n")
     else:
