@@ -143,6 +143,10 @@ def limit_remote_addr():
     routed through the API Umbrella.
     """
     falses = (False, 'False', 'false', 'f')
+    app.logger.info("Request access route: {}".format(request.access_route))
+    app.logger.info("Request remote addr: {}".format(request.remote_addr))
+    app.logger.info("Request headers: {}".format(request.headers))
+    #print(dir(request))
     if FEC_API_WHITELIST_IPS not in falses:
         try:
             *_, api_data_route, cf_route = request.access_route
