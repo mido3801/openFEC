@@ -135,7 +135,7 @@ def handle_error(error):
 # api.data.gov
 trusted_proxies = ('54.208.160.112', '54.208.160.151')
 FEC_API_WHITELIST_IPS = env.get_credential('FEC_API_WHITELIST_IPS', False)
-
+FEC_API_BLOCKED_IPS = ('Add IP here',)
 
 @app.before_request
 def limit_remote_addr():
@@ -149,11 +149,13 @@ def limit_remote_addr():
     #print(dir(request))
     if FEC_API_WHITELIST_IPS not in falses:
         try:
-            *_, api_data_route, cf_route = request.access_route
+            *_, source_ip, api_data_route, cf_route = request.access_route
         except ValueError:  # Not enough routes
             abort(403)
         else:
             if api_data_route not in trusted_proxies:
+                abort(403)
+            if source_ip in FEC_API_BLOCKED_IPS:
                 abort(403)
 
 
