@@ -306,7 +306,7 @@ def get_subject_tree(html, tree=None):
         # when subject is empty, just append empty subject to the tree
         subject = None
         tree.append({'text': subject})
-        # Dont raise an exception when there is no subject in an archived mur
+        # Do not raise an exception when there is no subject in an archived mur
         # raise Exception("Could not parse next token.")
 
     if not empty:
