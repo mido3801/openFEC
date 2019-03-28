@@ -337,7 +337,8 @@ def get_citations(citation_texts):
 
         else:
             print(citation_text)
-            raise Exception("Could not parse citation")
+            citation_text = 'Unavailable'
+            # raise Exception("Could not parse citation")
     return {"us_code": us_codes, "regulations": regulations}
 
 def delete_murs_from_s3():
