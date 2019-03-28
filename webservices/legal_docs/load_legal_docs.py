@@ -302,12 +302,9 @@ def get_subject_tree(html, tree=None):
                     .strip().lower().capitalize()
         tree.append({'text': subject})
     else:
-        # print(html)
-        # when subject is empty, just append empty subject to the tree
-        subject = ''
+        # when subject is empty, set subject as unavailable and append to the tree
+        subject = 'Unavailable'
         tree.append({'text': subject})
-        # Do not raise an exception when there is no subject in an archived mur
-        # raise Exception("Could not parse next token.")
 
     if not empty:
         tail = (root or list_item or unordered_list or end_list)
